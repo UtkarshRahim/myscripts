@@ -2,12 +2,6 @@ alias cbash="code ~/.bashrc"
 alias czsh="code ~/.zshrc"
 alias n10='nvm use 10'
 alias n14='nvm use 14'
-alias connectat='ssh -i ~/av.pem ubuntu@3.7.74.93'
-alias mon5='export MONGO_URL="localhost:27027/xcro-5x-db"'
-alias mond='export MONGO_URL="mongodb://localhost:27027/xcro6-db"'
-alias t58='ssh -i ~/av.pem -L 27027:localhost:27017 ubuntu@3.108.111.238'
-alias tdev='ssh -i ~/av.pem -L 27027:localhost:27017 ubuntu@13.126.150.28'
-alias tds='ssh -i ~/av.pem -L 27027:localhost:27017 ubuntu@13.234.130.124'
 alias ni10="nvm exec 10 npm i"
 alias node10="nvm exec 10 node app.js"
 alias npmrc="npm run start-remote"
