@@ -20,3 +20,27 @@ pmr() {
 pms() {
     pm2 stop $1
 }
+
+pmsc(){
+  dir=$(pwd)
+  repo=$(basename $dir)
+  id=$(pm2 list | grep $repo | awk '{print $2}')
+  count=$(echo "$id" | wc -l)
+  if [ "$count" -eq 1 ]; then
+    pm2 stop $id
+  else
+    echo "Check current branch and retry"
+  fi
+}
+
+pmrc(){
+  dir=$(pwd)
+  repo=$(basename $dir)
+  id=$(pm2 list | grep $repo | awk '{print $2}')
+  count=$(echo "$id" | wc -l)
+  if [ "$count" -eq 1 ]; then
+    pm2 restart $id
+  else
+    echo "Check current branch and retry"
+  fi
+}
