@@ -14,33 +14,39 @@ pml() {
 }
 
 pmr() {
-    pm2 restart $1
+    for process in "$@"; do
+        pm2 restart "$process" >/dev/null
+    done
+    pmls
 }
 
 pms() {
-    pm2 stop $1
+    for process in "$@"; do
+        pm2 stop "$process" >/dev/null
+    done
+    pmls
 }
 
-pmsc(){
-  dir=$(pwd)
-  repo=$(basename $dir)
-  id=$(pm2 list | grep $repo | awk '{print $2}')
-  count=$(echo "$id" | wc -l)
-  if [ "$count" -eq 1 ]; then
-    pm2 stop $id
-  else
-    echo "Check current branch and retry"
-  fi
+pmsc() {
+    dir=$(pwd)
+    repo=$(basename $dir)
+    id=$(pm2 list | grep $repo | awk '{print $2}')
+    count=$(echo "$id" | wc -l)
+    if [ "$count" -eq 1 ]; then
+        pm2 stop $id
+    else
+        echo "Check current branch and retry"
+    fi
 }
 
-pmrc(){
-  dir=$(pwd)
-  repo=$(basename $dir)
-  id=$(pm2 list | grep $repo | awk '{print $2}')
-  count=$(echo "$id" | wc -l)
-  if [ "$count" -eq 1 ]; then
-    pm2 restart $id
-  else
-    echo "Check current branch and retry"
-  fi
+pmrc() {
+    dir=$(pwd)
+    repo=$(basename $dir)
+    id=$(pm2 list | grep $repo | awk '{print $2}')
+    count=$(echo "$id" | wc -l)
+    if [ "$count" -eq 1 ]; then
+        pm2 restart $id
+    else
+        echo "Check current branch and retry"
+    fi
 }
